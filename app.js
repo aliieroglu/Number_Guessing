@@ -1,6 +1,6 @@
 const form = document.querySelector(".form");
 const inputNumber = document.querySelector(".guessField");
-const submitBtn = document.querySelector(".guessSibmit");
+const submitBtn = document.querySelector(".guessSubmit");
 const resultParas = document.querySelector(".resultParas");
 const guesses = document.querySelector(".guesses");
 const lastResult = document.querySelector(".lastResult");
@@ -13,7 +13,7 @@ console.log(randomNumber);
 eventListenars();
 
 function eventListenars(){
-    form.addEventListener("click",checkNumber);
+    form.addEventListener("submit",checkNumber);
 }
 
 function checkNumber(e){
@@ -27,6 +27,7 @@ function checkNumber(e){
     if(inputRights < 0){
         lastResult.textContent = "Game over";
         lowOrHi.textContent = '';
+        lowOrHi.style.backgroundColor = '';
         gameOver();
     }
 
@@ -48,6 +49,7 @@ function checkNumber(e){
         lastResult.style.backgroundColor = 'green';
         lastResult.padding = '15px';
         lowOrHi.textContent = '';
+        lowOrHi.style.backgroundColor = '';
         gameOver();
     }
     inputRights--;
@@ -78,12 +80,12 @@ function newGame(){
 
     resetBtn.parentNode.removeChild(resetBtn);
     inputNumber.disabled = false;
-    inputNumber.disabled = false;
+    submitBtn.disabled = false;
     inputNumber.value = '';
     inputNumber.focus();
     lastResult.style.backgroundColor = 'white';
     randomNumber = Math.floor(Math.random() * 100) + 1;
-
-
-
+    console.log(randomNumber);
 }
+
+// when 10 rights finish it have a Alert bug - fix it
